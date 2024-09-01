@@ -101,15 +101,15 @@
             android:layout_width="@dimen/_24sdp"
             android:layout_height="@dimen/_24sdp"
             android:layout_marginStart="@dimen/_20sdp"
-            android:src="@drawable/icon_logout" />
+            android:src="@drawable/icon_policy" />
 
         <TextView
-            android:id="@+id/btnLogout"
+            android:id="@+id/btnPolicy"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_10sdp"
             android:fontFamily="@font/inter"
-            android:text="@string/logout"
+            android:text="@string/policy"
             android:textSize="@dimen/_16ssp" />
 
     </LinearLayout>

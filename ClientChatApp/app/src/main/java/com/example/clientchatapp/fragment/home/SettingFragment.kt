@@ -1,6 +1,7 @@
 package com.example.clientchatapp.fragment.home
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -56,6 +57,14 @@ class SettingFragment : Fragment() {
                 val action = SettingFragmentDirections.actionSettingFragmentToEditProfileFragment(user)
                 findNavController().navigate(action)
             }
+        }
+
+        binding.btnPolicy.setOnClickListener {
+            val url = "https://purechat.com/privacy"
+            val intent = Intent(Intent.ACTION_VIEW).apply {
+                data = Uri.parse(url)
+            }
+            startActivity(intent)
         }
     }
 }

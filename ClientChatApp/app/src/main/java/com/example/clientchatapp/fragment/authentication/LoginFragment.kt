@@ -25,17 +25,17 @@ import kotlinx.coroutines.withContext
 class LoginFragment : Fragment() {
 
     private lateinit var binding: FragmentLoginBinding
-    private var chattManager: IChatService? = null
+    private var chatManager: IChatService? = null
     private var isConnect = false
 
     private val serviceConnection = object : ServiceConnection {
         override fun onServiceConnected(name: ComponentName?, service: IBinder?) {
-            chattManager = IChatService.Stub.asInterface(service)
+            chatManager = IChatService.Stub.asInterface(service)
             isConnect = true
         }
 
         override fun onServiceDisconnected(name: ComponentName?) {
-            chattManager = null
+            chatManager = null
             isConnect = false
         }
     }
@@ -81,7 +81,7 @@ class LoginFragment : Fragment() {
             if (phone.length == 10) {
                 CoroutineScope(Dispatchers.IO).launch {
                     try {
-                        val users = chattManager?.getAllUsers()?.filter { it.phone == phone }
+                        val users = chatManager?.getAllUsers()?.filter { it.phone == phone }
                         withContext(Dispatchers.Main) {
                             if (users.isNullOrEmpty()) {
                                 Toast.makeText(requireContext(), "User not found", Toast.LENGTH_SHORT).show()

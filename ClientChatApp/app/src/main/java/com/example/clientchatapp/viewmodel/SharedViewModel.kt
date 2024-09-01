@@ -6,10 +6,14 @@ import androidx.lifecycle.ViewModel
 import com.example.serverchatapp.entities.User
 
 class SharedViewModel : ViewModel() {
-    private val _user = MutableLiveData<User>()
-    val user: LiveData<User> get() = _user
+    private val _user = MutableLiveData<User?>()
+    val user: MutableLiveData<User?> get() = _user
 
     fun setUser(user: User) {
         _user.value = user
+    }
+
+    fun clearUser() {
+        _user.value = null
     }
 }

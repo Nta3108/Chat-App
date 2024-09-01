@@ -27,17 +27,17 @@ import kotlinx.coroutines.withContext
 class RegisterFragment : Fragment() {
 
     private lateinit var binding: FragmentRegisterBinding
-    private var chattManager: IChatService? = null
+    private var chatManager: IChatService? = null
     private var isConnect = false
 
     private val serviceConnection = object : ServiceConnection {
         override fun onServiceConnected(name: ComponentName?, service: IBinder?) {
-            chattManager = IChatService.Stub.asInterface(service)
+            chatManager = IChatService.Stub.asInterface(service)
             isConnect = true
         }
 
         override fun onServiceDisconnected(name: ComponentName?) {
-            chattManager = null
+            chatManager = null
             isConnect = false
         }
     }
@@ -81,12 +81,12 @@ class RegisterFragment : Fragment() {
             val name = binding.editTextName.text.toString().trim()
             val phone = binding.editTextPhone.text.toString().trim()
             val avatar =
-                Data.getUriFromDrawable(requireContext(), R.drawable.img_avtfour).toString()
+                Data.getUriFromDrawable(requireContext(), R.drawable.img_avttwo).toString()
 
             if (phone.length == 10) {
                 CoroutineScope(Dispatchers.IO).launch {
                     try {
-                        val users = chattManager?.getAllUsers() ?: emptyList()
+                        val users = chatManager?.getAllUsers() ?: emptyList()
                         val doesUserExist = users.any { it.phone == phone }
 
                         withContext(Dispatchers.Main) {
@@ -103,7 +103,7 @@ class RegisterFragment : Fragment() {
                                     phone = phone,
                                     avatarUser = avatar
                                 )
-                                chattManager?.insertUser(user)
+                                chatManager?.insertUser(user)
                                 Toast.makeText(
                                     requireContext(),
                                     "Register successful",

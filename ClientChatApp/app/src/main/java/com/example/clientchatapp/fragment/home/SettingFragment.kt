@@ -14,7 +14,6 @@ import com.bumptech.glide.Glide
 import com.example.clientchatapp.R
 import com.example.clientchatapp.databinding.FragmentSettingBinding
 import com.example.clientchatapp.viewmodel.SharedViewModel
-import com.example.serverchatapp.entities.User
 
 
 class SettingFragment : Fragment() {
@@ -58,10 +57,5 @@ class SettingFragment : Fragment() {
                 findNavController().navigate(action)
             }
         }
-
-        binding.btnLogout.setOnClickListener {
-            findNavController().navigate(R.id.action_settingFragment_to_loginFragment)
-        }
-
     }
 }

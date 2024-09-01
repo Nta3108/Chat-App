@@ -21,8 +21,10 @@ class ChatService : Service() {
 
     @Inject
     lateinit var chatRepository: ChatRepository
+
     @Inject
     lateinit var conversationRepository: ConversationRepository
+
     @Inject
     lateinit var userRepository: UserRepository
 

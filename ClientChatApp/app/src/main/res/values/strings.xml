@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">ClientChatApp</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="al_chat">AL CHAT</string>
+    <string name="onboarding_one_text">
+        Welcome to chatboat,\n
+        a great friend to chat\n
+        with you
+    </string>
+    <string name="onboarding_two_text">
+        If you are confused about\n
+        what to do just open\n
+        Chatboat app
+    </string>
+    <string name="next">Next</string>
+    <string name="register">Register</string>
+    <string name="enter_your_name">Enter your name</string>
+    <string name="enter_your_phone">Enter your phone</string>
+    <string name="already_have_an_account">Already have an account</string>
+    <string name="login">Login</string>
+    <string name="don_t_have_an_account">Don\'t have an account</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="change_avatar">Change avatar</string>
+    <string name="update_profile">Update Profile</string>
+    <string name="settings">Settings</string>
+    <string name="logout">Logout</string>
+    <string name="contacts">Contacts</string>
+    <string name="search_by_name">Search by name</string>
+    <string name="chats">Chats</string>
+
+</resources>

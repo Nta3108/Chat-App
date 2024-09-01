@@ -27,6 +27,7 @@ class ChatService : Service() {
 
     @Inject
     lateinit var userRepository: UserRepository
+    private var updateStatus: Boolean = false
 
     private val binder = object : IChatService.Stub() {
         //Chat function
@@ -126,7 +127,7 @@ class ChatService : Service() {
         }
 
         override fun searchUserByName(name: String?): List<User> {
-            return userRepository.searchUserByName(name.toString())
+            return userRepository.searchUserByName("%$name%")
         }
 
         private suspend fun updateConversationAfterMessage(conversationId: Long) {

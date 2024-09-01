@@ -27,6 +27,6 @@ class UserRepository @Inject constructor(
     }
 
     fun searchUserByName(name: String): List<User> {
-        return userDao.searchUserByName(name).value ?: emptyList()
+        return userDao.searchUserByName("%$name%")
     }
 }

@@ -26,5 +26,5 @@ interface UserDao {
     fun getUserByID(userID: Long): LiveData<User>
 
     @Query("SELECT * FROM users WHERE nameUser LIKE :name")
-    fun searchUserByName(name: String): LiveData<List<User>>
+    fun searchUserByName(name: String): List<User>
 }

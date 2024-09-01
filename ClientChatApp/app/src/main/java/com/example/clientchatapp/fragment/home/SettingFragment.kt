@@ -54,7 +54,8 @@ class SettingFragment : Fragment() {
 
         binding.btnEditProfile.setOnClickListener {
             sharedViewModel.user.value?.let { user ->
-                val action = SettingFragmentDirections.actionSettingFragmentToEditProfileFragment(user)
+                val action =
+                    SettingFragmentDirections.actionSettingFragmentToEditProfileFragment(user)
                 findNavController().navigate(action)
             }
         }

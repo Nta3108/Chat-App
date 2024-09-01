@@ -4,23 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment.introduction.SplashFragment"
     android:background="@drawable/backgroung"
-    >
+    tools:context=".fragment.introduction.SplashFragment">
 
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/img_bg"
-        android:scaleType="fitXY"
         android:alpha="0.4"
-        />
+        android:scaleType="fitXY"
+        android:src="@drawable/img_bg" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
+        android:layout_height="match_parent">
 
         <ImageView
             android:id="@+id/img_icon"
@@ -39,9 +36,9 @@
             android:text="@string/al_chat"
             android:textColor="@color/white"
             android:textSize="@dimen/_30sdp"
-            app:layout_constraintTop_toBottomOf="@id/img_icon"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/img_icon" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -9,7 +9,7 @@ import com.example.clientchatapp.R
 import com.example.clientchatapp.databinding.ItemContactBinding
 import com.example.serverchatapp.entities.User
 
-class ContactAdapter: RecyclerView.Adapter<ContactAdapter.ContactViewHolder>() {
+class ContactAdapter : RecyclerView.Adapter<ContactAdapter.ContactViewHolder>() {
 
     private var users: List<User> = emptyList()
 
@@ -18,7 +18,10 @@ class ContactAdapter: RecyclerView.Adapter<ContactAdapter.ContactViewHolder>() {
         notifyDataSetChanged()
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContactAdapter.ContactViewHolder {
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): ContactAdapter.ContactViewHolder {
         val binding = ItemContactBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ContactViewHolder(binding)
     }
@@ -27,7 +30,7 @@ class ContactAdapter: RecyclerView.Adapter<ContactAdapter.ContactViewHolder>() {
         holder.bind(users[position])
     }
 
-    override fun getItemCount(): Int  = users.size
+    override fun getItemCount(): Int = users.size
 
     inner class ContactViewHolder(private val binding: ItemContactBinding) :
         RecyclerView.ViewHolder(binding.root) {

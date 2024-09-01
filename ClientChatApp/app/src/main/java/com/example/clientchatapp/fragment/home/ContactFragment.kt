@@ -62,7 +62,7 @@ class ContactFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentContactBinding.inflate(inflater, container,false)
+        binding = FragmentContactBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -78,7 +78,7 @@ class ContactFragment : Fragment() {
         }
     }
 
-    private fun loadContacts(){
+    private fun loadContacts() {
         val users: List<User>? = chatManager?.allUsers
         if (users != null) {
             contactAdapter.submitList(users)

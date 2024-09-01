@@ -19,25 +19,22 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/_15sdp"
-            android:layout_marginVertical="@dimen/_10sdp"
-            >
+            android:layout_marginVertical="@dimen/_10sdp">
 
             <EditText
                 android:id="@+id/editTextSearch"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/searchbar"
-                android:hint="@string/search_by_name"
-                />
+                android:hint="@string/search_by_name" />
 
             <ImageView
                 android:id="@+id/btnSearch"
                 android:layout_width="@dimen/_18sdp"
                 android:layout_height="@dimen/_18sdp"
-                android:src="@drawable/icon_search"
                 android:layout_gravity="center|end"
                 android:layout_marginEnd="@dimen/_12sdp"
-                />
+                android:src="@drawable/icon_search" />
         </FrameLayout>
 
         <TextView
@@ -54,8 +51,8 @@
         android:id="@+id/recyclerViewConversation"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="7.5"
         android:layout_marginHorizontal="@dimen/_20sdp"
-        android:layout_marginTop="@dimen/_15sdp" />
+        android:layout_marginTop="@dimen/_15sdp"
+        android:layout_weight="7.5" />
 
 </LinearLayout>

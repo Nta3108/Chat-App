@@ -64,7 +64,7 @@ class LoginFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentLoginBinding.inflate(inflater, container,false)
+        binding = FragmentLoginBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -84,23 +84,37 @@ class LoginFragment : Fragment() {
                         val users = chatManager?.getAllUsers()?.filter { it.phone == phone }
                         withContext(Dispatchers.Main) {
                             if (users.isNullOrEmpty()) {
-                                Toast.makeText(requireContext(), "User not found", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(
+                                    requireContext(),
+                                    "User not found",
+                                    Toast.LENGTH_SHORT
+                                ).show()
                             } else {
                                 val user = users.first()
-                                Toast.makeText(requireContext(), "Login successful", Toast.LENGTH_SHORT).show()
-                                val action = LoginFragmentDirections.actionLoginFragmentToHomeFragment(user)
+                                Toast.makeText(
+                                    requireContext(),
+                                    "Login successful",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                                val action =
+                                    LoginFragmentDirections.actionLoginFragmentToHomeFragment(user)
                                 findNavController().navigate(action)
                             }
                         }
                     } catch (e: RemoteException) {
                         e.printStackTrace()
                         withContext(Dispatchers.Main) {
-                            Toast.makeText(requireContext(), "Failed to login", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(requireContext(), "Failed to login", Toast.LENGTH_SHORT)
+                                .show()
                         }
                     }
                 }
             } else {
-                Toast.makeText(requireContext(), "Phone number must be 10 digits", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    requireContext(),
+                    "Phone number must be 10 digits",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         }
 

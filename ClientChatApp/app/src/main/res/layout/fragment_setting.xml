@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".fragment.home.SettingFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/_80sdp"
-        android:gravity="center|start"
-        android:background="@drawable/bg_title">
+        android:background="@drawable/bg_title"
+        android:gravity="center|start">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_20sdp"
             android:fontFamily="@font/inter_medium"
             android:text="@string/settings"
-            android:layout_marginStart="@dimen/_20sdp"
             android:textColor="@color/white"
             android:textSize="@dimen/_18ssp" />
     </LinearLayout>
@@ -26,33 +26,30 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/bg_user"
-        android:layout_marginTop="@dimen/_15sdp"
         android:layout_marginHorizontal="@dimen/_20sdp"
-        >
+        android:layout_marginTop="@dimen/_15sdp"
+        android:background="@drawable/bg_user">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/imageAvatar"
             android:layout_width="@dimen/_60sdp"
             android:layout_height="@dimen/_60sdp"
-            android:src="@drawable/img_avatar"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
             android:layout_margin="@dimen/_10sdp"
-            />
+            android:src="@drawable/img_avatar"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/textViewName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/_20ssp"
+            android:layout_marginStart="@dimen/_10sdp"
             android:fontFamily="@font/inter_semibold"
             android:text="@string/app_name"
-            android:layout_marginStart="@dimen/_10sdp"
-            app:layout_constraintTop_toTopOf="@+id/imageAvatar"
+            android:textSize="@dimen/_20ssp"
             app:layout_constraintStart_toEndOf="@+id/imageAvatar"
-            />
+            app:layout_constraintTop_toTopOf="@+id/imageAvatar" />
 
         <TextView
             android:id="@+id/textViewPhone"
@@ -70,9 +67,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_marginTop="@dimen/_30sdp"
-        >
+        android:orientation="horizontal">
 
         <ImageView
             android:layout_width="28dp"
@@ -94,9 +90,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_marginTop="@dimen/_30sdp"
-        >
+        android:orientation="horizontal">
+
         <ImageView
             android:layout_width="@dimen/_24sdp"
             android:layout_height="@dimen/_24sdp"

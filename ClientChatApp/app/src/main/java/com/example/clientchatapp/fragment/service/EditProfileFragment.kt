@@ -20,6 +20,7 @@ import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.clientchatapp.R
 import com.example.clientchatapp.databinding.FragmentEditProfileBinding
+import com.example.clientchatapp.viewmodel.EditProfileViewModel
 import com.example.clientchatapp.viewmodel.SharedViewModel
 import com.example.serverchatapp.IChatService
 import com.example.serverchatapp.entities.User
@@ -32,42 +33,9 @@ class EditProfileFragment : Fragment() {
 
     private lateinit var binding: FragmentEditProfileBinding
     private var user: User? = null
-    private var chatManager: IChatService? = null
-    private var isConnect = false
     private var avatarUri: String = ""
     private lateinit var sharedViewModel: SharedViewModel
-
-    private val serviceConnection = object : ServiceConnection {
-        override fun onServiceConnected(name: ComponentName?, service: IBinder?) {
-            chatManager = IChatService.Stub.asInterface(service)
-            isConnect = true
-        }
-
-        override fun onServiceDisconnected(name: ComponentName?) {
-            chatManager = null
-            isConnect = false
-        }
-    }
-
-    override fun onStart() {
-        super.onStart()
-        requireContext().bindService(Intent("com.example.serverchatapp.BIND_CHAT_SERVICE").apply {
-            setComponent(
-                ComponentName(
-                    "com.example.serverchatapp",
-                    "com.example.serverchatapp.service.ChatService"
-                )
-            )
-        }, serviceConnection, Context.BIND_AUTO_CREATE)
-    }
-
-    override fun onStop() {
-        super.onStop()
-        if (isConnect) {
-            requireContext().unbindService(serviceConnection)
-            isConnect = false
-        }
-    }
+    private lateinit var editProfileViewModel: EditProfileViewModel
 
     private val pickImageResultLauncher = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
@@ -101,6 +69,8 @@ class EditProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        editProfileViewModel = ViewModelProvider(this).get(EditProfileViewModel::class.java)
 
         sharedViewModel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
 
@@ -153,14 +123,20 @@ class EditProfileFragment : Fragment() {
                 avatarUser = avatarUri.ifEmpty { user?.avatarUser ?: "" }
             )
             updatedUser?.let { updatedUser ->
-                CoroutineScope(Dispatchers.IO).launch {
-                    chatManager?.updateUser(updatedUser)
-                    withContext(Dispatchers.Main) {
-                        sharedViewModel.setUser(updatedUser)
-                        Toast.makeText(requireContext(), "Update successful", Toast.LENGTH_SHORT)
-                            .show()
-                        findNavController().navigateUp()
-                    }
+                sharedViewModel.setUser(updatedUser)
+                editProfileViewModel.updateProfile(updatedUser)
+            }
+        }
+
+        editProfileViewModel.updateProfileState.observe(viewLifecycleOwner) { state ->
+            when (state) {
+                is EditProfileViewModel.UpdateProfileState.Success -> {
+                    Toast.makeText(requireContext(), "Update successful", Toast.LENGTH_SHORT).show()
+                    findNavController().navigateUp()
+                }
+
+                is EditProfileViewModel.UpdateProfileState.Error -> {
+                    Toast.makeText(requireContext(), state.message, Toast.LENGTH_SHORT).show()
                 }
             }
         }

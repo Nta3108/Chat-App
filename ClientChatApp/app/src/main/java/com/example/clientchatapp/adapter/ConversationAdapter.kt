@@ -58,7 +58,7 @@ class ConversationAdapter(
 
         // Handle long click
         holder.itemView.setOnLongClickListener {
-            homeFragment.removeConversationWithId(conversation.conversationID)
+           // homeFragment.removeConversationWithId(conversation.conversationID)
             true
         }
     }

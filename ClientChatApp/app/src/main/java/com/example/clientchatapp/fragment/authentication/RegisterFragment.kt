@@ -12,10 +12,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.clientchatapp.R
 import com.example.clientchatapp.data.Data
 import com.example.clientchatapp.databinding.FragmentRegisterBinding
+import com.example.clientchatapp.viewmodel.RegisterViewModel
 import com.example.serverchatapp.IChatService
 import com.example.serverchatapp.entities.User
 import kotlinx.coroutines.CoroutineScope
@@ -27,40 +29,7 @@ import kotlinx.coroutines.withContext
 class RegisterFragment : Fragment() {
 
     private lateinit var binding: FragmentRegisterBinding
-    private var chatManager: IChatService? = null
-    private var isConnect = false
-
-    private val serviceConnection = object : ServiceConnection {
-        override fun onServiceConnected(name: ComponentName?, service: IBinder?) {
-            chatManager = IChatService.Stub.asInterface(service)
-            isConnect = true
-        }
-
-        override fun onServiceDisconnected(name: ComponentName?) {
-            chatManager = null
-            isConnect = false
-        }
-    }
-
-    override fun onStart() {
-        super.onStart()
-        requireContext().bindService(Intent("com.example.serverchatapp.BIND_CHAT_SERVICE").apply {
-            setComponent(
-                ComponentName(
-                    "com.example.serverchatapp",
-                    "com.example.serverchatapp.service.ChatService"
-                )
-            )
-        }, serviceConnection, Context.BIND_AUTO_CREATE)
-    }
-
-    override fun onStop() {
-        super.onStop()
-        if (isConnect) {
-            requireContext().unbindService(serviceConnection)
-            isConnect = false
-        }
-    }
+    private lateinit var registerViewModel: RegisterViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -73,6 +42,9 @@ class RegisterFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        registerViewModel = ViewModelProvider(this).get(RegisterViewModel::class.java)
+        registerViewModel.bindService()
+
         binding.iconBack.setOnClickListener {
             findNavController().navigateUp()
         }
@@ -83,57 +55,30 @@ class RegisterFragment : Fragment() {
             val avatar =
                 Data.getUriFromDrawable(requireContext(), R.drawable.img_avttwo).toString()
 
-            if (phone.length == 10) {
-                CoroutineScope(Dispatchers.IO).launch {
-                    try {
-                        val users = chatManager?.getAllUsers() ?: emptyList()
-                        val doesUserExist = users.any { it.phone == phone }
+            registerViewModel.registerUser(name, phone, avatar)
+        }
 
-                        withContext(Dispatchers.Main) {
-                            if (doesUserExist) {
-                                Toast.makeText(
-                                    requireContext(),
-                                    "Phone number already registered",
-                                    Toast.LENGTH_SHORT
-                                ).show()
-                            } else {
-                                val user = User(
-                                    userID = 0,
-                                    nameUser = name,
-                                    phone = phone,
-                                    avatarUser = avatar
-                                )
-                                chatManager?.insertUser(user)
-                                Toast.makeText(
-                                    requireContext(),
-                                    "Register successful",
-                                    Toast.LENGTH_SHORT
-                                ).show()
-                                findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
-                            }
-                        }
-                    } catch (e: RemoteException) {
-                        e.printStackTrace()
-                        withContext(Dispatchers.Main) {
-                            Toast.makeText(
-                                requireContext(),
-                                "Failed to register user",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                        }
-                    }
+        registerViewModel.registerState.observe(viewLifecycleOwner) { state ->
+            when (state) {
+                is RegisterViewModel.RegisterState.Success -> {
+                    Toast.makeText(requireContext(), "Register successful", Toast.LENGTH_SHORT)
+                        .show()
+                    findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
                 }
-            } else {
-                Toast.makeText(
-                    requireContext(),
-                    "Phone number must be 10 digits",
-                    Toast.LENGTH_SHORT
-                ).show()
+
+                is RegisterViewModel.RegisterState.Error -> {
+                    Toast.makeText(requireContext(), state.message, Toast.LENGTH_SHORT).show()
+                }
             }
         }
 
         binding.btnLogin.setOnClickListener {
             findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
         }
+    }
+
+    override fun onStop() {
+        super.onStop()
+        registerViewModel.unbindService()
     }
 }

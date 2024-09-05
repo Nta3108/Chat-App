@@ -12,8 +12,4 @@ class SharedViewModel : ViewModel() {
     fun setUser(user: User) {
         _user.value = user
     }
-
-    fun clearUser() {
-        _user.value = null
-    }
 }

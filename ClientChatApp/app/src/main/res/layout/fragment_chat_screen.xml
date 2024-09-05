@@ -61,9 +61,8 @@
                 android:src="@drawable/icon_delete" />
         </LinearLayout>
 
-
-        <!-- đoạn này tự triển khai recyclerview cho chat theo ý muốn-->
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewChat"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="7.5" />

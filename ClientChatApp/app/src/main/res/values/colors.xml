@@ -7,4 +7,5 @@
     <color name="blue_bg">#E9FEFE</color>
     <color name="blue_select">#104949</color>
     <color name="gray_unselect">#B3AFAF</color>
+    <color name="gray">#808080</color>
 </resources>

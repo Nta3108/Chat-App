@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ClientChatApp</string>
+    <string name="app_name">Client Chat App</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="al_chat">AL CHAT</string>
@@ -29,5 +29,16 @@
     <string name="search_by_name">Search by name</string>
     <string name="chats">Chats</string>
     <string name="policy">Policy</string>
+    <string name="remove">Remove</string>
+    <string name="cancel">Cancel</string>
+    <string name="you_ll_can_t_see_this_friend_any_more">You\'ll can\'t see this friend any more</string>
+    <string name="remove_friend">Remove Friend</string>
+    <string name="sender_name">Sender Name</string>
+    <string name="last_message">Last Message</string>
+    <string name="time_stamp">Time Stamp</string>
+    <string name="image_dialog_remove_conversation">image_dialog_remove_conversation</string>
+    <string name="remove_conversation">Remove Conversation</string>
+    <string name="you_ll_can_t_see_all_message_any_more">You\'ll can\'t see all message any more</string>
+    <string name="user_image">user_image</string>
 
 </resources>

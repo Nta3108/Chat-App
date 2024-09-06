@@ -91,7 +91,9 @@
         android:id="@+id/chatScreenFragment"
         android:name="com.example.clientchatapp.fragment.service.ChatScreenFragment"
         android:label="fragment_chat_screen"
-        tools:layout="@layout/fragment_chat_screen"></fragment>
+        tools:layout="@layout/fragment_chat_screen">
+
+    </fragment>
 
     <fragment
         android:id="@+id/contactFragment"

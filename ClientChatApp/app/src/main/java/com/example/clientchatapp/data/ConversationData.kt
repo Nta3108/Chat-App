@@ -28,7 +28,17 @@ object ConversationData {
                 lastMessage = "Let's meet up tomorrow.",
                 timestamp = "2024-09-04 09:30"
             ),
-            // Add more conversations here...
+            Conversation(
+                conversationID = 3L,
+                senderID = 103L,
+                receiverID = 201L,
+                senderName = "Eve",
+                senderAvt = "https://example.com/avatar/eve.jpg",
+                receiverName = "Alice",
+                receiverAvt = "https://example.com/avatar/alice.jpg",
+                lastMessage = "Can you send me the report?",
+                timestamp = "2024-09-04 11:15"
+            )
         )
     }
 }

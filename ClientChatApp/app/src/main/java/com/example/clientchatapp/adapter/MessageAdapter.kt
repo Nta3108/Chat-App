@@ -86,7 +86,4 @@ class MessageAdapter(
         messages.add(message)
         notifyItemInserted(messages.size - 1)
     }
-
-    // Optional: Get current data
-    fun getMessages(): List<ChatMessage> = messages
 }
